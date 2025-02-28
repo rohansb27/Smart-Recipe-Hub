@@ -62,3 +62,20 @@ router.post("/add-recipe", upload.single("image"), async (req, res) => {
       res.status(500).json({ message: "Server Error" });
     }
   });
+
+  router.get("/all-recipes", async (req, res) => {
+    try {
+      const db = await connectDB(); // Connect to MongoDB
+      const recipesCollection = db.collection("recipes");
+  
+      const recipes = await recipesCollection.find({}).toArray();
+  
+      res.status(200).json({
+        message: "Recipes fetched successfully!",
+        recipes: recipes,
+      });
+    } catch (error) {
+      console.error("Error fetching recipes:", error.message);
+      res.status(500).json({ message: "Server Error" });
+    }
+  });
