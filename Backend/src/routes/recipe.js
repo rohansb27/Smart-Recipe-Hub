@@ -79,3 +79,49 @@ router.post("/add-recipe", upload.single("image"), async (req, res) => {
       res.status(500).json({ message: "Server Error" });
     }
   });
+
+
+ router.post("/recipes/:recipeId/comments", async (req, res) => {
+  const {recipeId} = req.params;
+  const {userId, username, text} = req.body;
+
+  try{
+    if(!userId ||  !username || !text){
+      return res.status(400).json({message: "All fields (userId, username, and text) are required"});
+    }
+
+    //connect to the MongoDB database
+    const db = await connectDB();
+    const recipesCollection = db.collection("recipes");
+
+    //Find the recipe by ID
+    const recipe = await recipesCollection.findOne({_id: new ObjectId(recipeId)});
+    if(!recipe){
+      return res.status(404).json({message : "Recipe not found"});
+    }
+
+    //Create the new comment object
+    const newComment = {
+      userId,
+      username,
+      text,
+      createdAt : new Date(),
+    };
+
+    //update the recipe to add the comment
+    await recipesCollection.updateOne(
+      { _id : new ObjectId(recipeId)},
+      { $push : {comments: newComment}}
+    );
+    res.status(201).json({
+      message : "Comment added successfully!",
+      comment : newComment,
+    });
+
+  } catch(error){
+    console.error("Error adding comment:",error.message);
+    res.status(500).json({message : "Server Error ", error: error.message});
+  }
+ });
+ 
+ 
