@@ -19,4 +19,19 @@ const isYouTubeVideoAvailable = async (url) => {
   }
 };
 
+// Function to fetch fallback recipe image
+const fetchRecipeImage = async (query) => {
+  const apiKey = process.env.PEXELS_API_KEY; // Use Pexels API or Unsplash
+  try {
+    const response = await axios.get(`https://api.pexels.com/v1/search`, {
+      headers: { Authorization: apiKey },
+      params: { query, per_page: 1 },
+    });
+    return response.data.photos[0]?.src?.medium || "https://via.placeholder.com/300";
+  } catch (error) {
+    console.error("Error fetching fallback image:", error.message);
+    return "https://via.placeholder.com/300"; // Placeholder fallback
+  }
+};
+
 module.exports = router;
