@@ -34,4 +34,57 @@ const fetchRecipeImage = async (query) => {
   }
 };
 
+// Route to generate recipe recommendations
+router.post("/gemini-recommend", async (req, res) => {
+    const { cuisine, ingredients } = req.body;
+  
+    if (!cuisine || !ingredients) {
+      return res.status(400).json({ message: "Cuisine and ingredients are required." });
+    }
+  
+    try {
+      // Build the AI prompt
+      const prompt = `
+        Suggest a recipe based on the following:
+        - Cuisine: ${cuisine}
+        - Ingredients: ${ingredients.join(", ")}
+  
+        Provide the following details:
+        - Recipe Title
+        - Steps to prepare the dish
+        - Reference video link that is published
+      `;
+  
+      // Send prompt to Gemini
+      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+      const result = await model.generateContent(prompt);
+      const responseText = result.response.text();
+
+    // Parse response
+    const lines = responseText.split("\n");
+    const title = lines.find((line) => line.includes("Title:"))?.replace("Title:", "").trim() || "AI Generated Recipe";
+    const steps = lines.find((line) => line.includes("Steps:"))?.replace("Steps:", "").trim() || responseText;
+    let video = lines.find((line) => line.includes("http"))?.trim() || "";
+
+    // Check if video is valid; fetch fallback image if not
+    let image = "";
+    if (video && !(await isYouTubeVideoAvailable(video))) {
+      video = "";
+      image = await fetchRecipeImage(`${title} recipe`);
+    }
+
+    const recommendation = {
+      title,
+      steps,
+      video,
+      image: video ? "" : image, // Provide fallback image if no video is available
+    };
+
+    res.status(200).json({ recommendations: [recommendation] });
+  } catch (error) {
+    console.error("Error generating recipe:", error.message);
+    res.status(500).json({ message: "Failed to fetch recipe recommendations." });
+  }
+});
+
 module.exports = router;
