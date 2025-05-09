@@ -1,0 +1,51 @@
+.card-title {
+  color: #f5deb3; /* Wheat color for titles */
+}
+
+.btn-primary {
+  background-color: #ff7f50; /* Coral color for buttons */
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #ff4500; /* Darker coral for hover effect */
+}
+
+.modal-content {
+  border-radius: 15px;
+  background-color: #fff8dc; /* Cornsilk for food-themed modal */
+  color: #333;
+}
+
+.list-group-item {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+}
+
+.modal-header,
+.modal-footer {
+  border: none;
+}
+
+.btn-close {
+  background-color: transparent;
+  border: none;
+}
+
+.btn-secondary {
+  background-color: #674636;
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background-color: #502d25;
+}
+
+.card-text {
+  color: #d8a886;
+  font-weight: 500;
+}
+
+.no-scroll {
+  overflow: hidden;
+}

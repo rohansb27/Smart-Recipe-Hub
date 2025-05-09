@@ -1,0 +1,57 @@
+body {
+  background-image: url("/frontend/public/background.png"); /* Update with your image path */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity here */
+  z-index: 1; /* Ensure it sits behind the content */
+}
+
+.card {
+  position: relative; /* Ensure card is above the overlay */
+  z-index: 2; /* Ensure card is above the overlay */
+  background-color: #674636; /* Matches RecipeCard's color scheme */
+  border-radius: 15px;
+}
+
+.form-label {
+  color: #f5deb3; /* Wheat color for labels */
+}
+
+.form-control {
+  background-color: #c7c7c7; /* Dark input background */
+  color: #fff; /* Light text color */
+  border: 1px solid #555; /* Subtle border */
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #ff7f50; /* Coral color for focus */
+}
+
+.btn-success {
+  background-color: #ff7f50; /* Coral color for consistency */
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #ff4500; /* Darker coral */
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border: none;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}

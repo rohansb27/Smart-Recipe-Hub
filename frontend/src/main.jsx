@@ -21,9 +21,13 @@ const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       // {
-      //   index: true, 
+      //   index: true,
       //   element: <HomePage />,
       // },
+      {
+        index: true,
+        element: <HomePage />,
+      },
       {
         path: "/sign-in/*",
         element: <SignInPage />,
@@ -36,7 +40,7 @@ const router = createBrowserRouter([
         path: "/sign-up-success",
         element: <SignUpSuccessPage />,
       },
-      
+
       // {
       //   path: "/add-recipe",
       //   element: <AddRecipePage />,
@@ -49,6 +53,18 @@ const router = createBrowserRouter([
       //   path: "/profile",
       //   element: <ProfilePage />,
       // },
+      {
+        path: "/add-recipe",
+        element: <AddRecipePage />,
+      },
+      {
+        path: "/recommend",
+        element: <AIRecommendationPage />,
+      },
+      {
+        path: "/profile",
+        element: <ProfilePage />,
+      },
     ],
   },
 ]);

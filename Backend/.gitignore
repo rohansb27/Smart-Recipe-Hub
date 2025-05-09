@@ -1,0 +1,14 @@
+node_modules
+dist
+.vscode
+.idea
+.env
+.env.*
+!.env.devops
+src/seed/assets/*
+!src/seed/assets/README.md
+src/sandbox.ts
+notes.txt
+app.yaml
+smart-recipe-hub-8e88fa8e3567.json
+.vercel

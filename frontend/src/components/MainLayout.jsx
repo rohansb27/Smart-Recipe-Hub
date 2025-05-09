@@ -1,9 +1,7 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import NavigationBar from "../components/Navbar";
-import {
-  ClerkProvider,
-} from "@clerk/clerk-react";
+import { ClerkProvider } from "@clerk/clerk-react";
 import { Container } from "react-bootstrap";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -16,10 +14,20 @@ if (!PUBLISHABLE_KEY) {
 
 const MainLayout = () => {
   return (
-    <ClerkProvider publishableKey={PUBLISHABLE_KEY} signUpForceRedirectUrl="/sign-up-success"  afterSignOutUrl="/">
-      <div className="d-flex flex-column vh-100">
+    <ClerkProvider
+      publishableKey={PUBLISHABLE_KEY}
+      signUpForceRedirectUrl="/sign-up-success"
+      afterSignOutUrl="/"
+    >
+      <div className="d-flex flex-column min-vh-100">
         {/* Sticky Navbar */}
-        <header>
+        <header
+          style={{
+            position: "sticky",
+            top: 0,
+            zIndex: 1000,
+          }}
+        >
           <NavigationBar />
         </header>
 

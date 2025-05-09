@@ -1,0 +1,90 @@
+/* Profile Page Container */
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 20px;
+}
+
+/* Interactive User Information Card */
+.interactive-card {
+  position: relative;
+  color: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.interactive-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.interactive-card .card-title {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  text-align: center;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.interactive-card .card-content {
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+/* Uploaded Recipes Grid */
+.user-recipes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.user-recipes h2 {
+  margin-top: 20px;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: #1e1e1e;
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.card-footer {
+  background: #1e1e1e;
+  padding: 10px;
+  text-align: center;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #f1c40f;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-delete:hover {
+  background-color: #c0392b;
+}

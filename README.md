@@ -1,2 +1,1 @@
-# Smart Recipe Hub
- 
+# smart-recipe-hub
