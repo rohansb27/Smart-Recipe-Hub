@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import RecipeCard from "./RecipeCard";
 import apiClient from "../services/apiClient";
 
-
 const HomePage = () => {
   const [recipes, setRecipes] = useState([]); // State to store recipes
   const [loading, setLoading] = useState(true); // Loading state
@@ -24,14 +23,14 @@ const HomePage = () => {
 
   return (
     <div className="container mt-4">
-      <h2 className="text-center mb-4">All Recipes</h2>
+      <h2 className="text-center mb-4 text-white fw-bold">All Recipes</h2>
       {loading ? (
         <p className="text-center">Loading recipes...</p>
       ) : recipes?.length > 0 ? (
         <div className="row">
           {recipes?.map((recipe, index) => (
             <div key={index} className=" mb-4">
-              <RecipeCard recipe={recipe}  />
+              <RecipeCard recipe={recipe} />
             </div>
           ))}
         </div>
